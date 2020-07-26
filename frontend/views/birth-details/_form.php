@@ -9,45 +9,65 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="birth-details-form">
+<div class="card">
+    <div class="card-header card--header">
+        <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+        <div class="heading-elements">
+            <ul class="list-inline mb-0">
+                <li></li>
+            </ul>
+        </div>
+    </div>
+    <div class="card-content collapse show">
+        <div class="card-body">
 
-    <?php $form = ActiveForm::begin(); ?>
+        <?php $form = ActiveForm::begin(['options'=>['class'=>'','enctype'=>'multipart/form-data']]); ?>
 
-    <?= $form->field($model, 'BirthCertNo')->textInput(['maxlength' => true]) ?>
+        <div class="row">
+            <div class="col-md-6">
+                <?= $form->field($model, 'FullName')->textInput(['data-validation'=>'required','maxlength' => true])->label('<b>Full Name</b>') ?>
+            </div>
+            <div class="col-md-6">
+                 <?= $form->field($model, 'Gender')->dropDownList(['Male'=>'Male','Female'=>'Female'],['prompt'=>'Select Gender','data-validation'=>'required'])->label('<b>Gender</b>') ?>  
+            </div> 
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <?= $form->field($model, 'MothersName')->textInput(['maxlength' => true])->label('<b>Mothers Name</b>') ?>
+            </div>
+            <div class="col-md-6">
+                 <?= $form->field($model, 'FathersName')->textInput(['maxlength' => true])->label('<b>Fathers Name</b>') ?>
+            </div>   
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <?= $form->field($model, 'DateofBirth')->textInput(['data-validation'=>'required','type'=>'date','max'=>date('Y-m-d')])->label('<b>Date of Birth</b>') ?>
+            </div>  
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <?= $form->field($model, 'CountyID')->textInput(['maxlength' => true])->label('<b>County Name</b>') ?>
+            </div>
+            <div class="col-md-6">
+                 <?= $form->field($model, 'ConstituencyID')->textInput(['maxlength' => true])->label('<b>Constituency Name</b>') ?>
+            </div>   
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <?= $form->field($model, 'DocumentofRegistration')->dropDownList(['IDCard'=>'Indentity Card','Notification'=>'Birth Notification'],['prompt'=>'Select Document of Registration','data-validation'=>'required'])->label('<b>Document of Registration</b>') ?>
+            </div>
+            <div class="col-md-6">
+                 <?= $form->field($model, 'DocumentNumber')->textInput(['maxlength' => true])->label('<b>Document Number</b>') ?>
+            </div>  
+        </div>
+        <div class="card-footer">
+            <?= Html::a('<i class="ft-x-circle"></i> Cancel', ['index'], ['class' => 'btn btn-default pull-left']) ?>
+            <?= Html::submitButton('<i class="la la-check-circle-o"></i> Save', ['class' => 'btn btn-primary pull-right']) ?>
+            <span class="clearfix"></span>
+        </div>
 
-    <?= $form->field($model, 'FullName')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'DateofBirth')->textInput() ?>
-
-    <?= $form->field($model, 'MothersName')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'FathersName')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'Gender')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'CountyID')->textInput() ?>
-
-    <?= $form->field($model, 'ConstituencyID')->textInput() ?>
-
-    <?= $form->field($model, 'DocumentofRegistration')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'DocumentNumber')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'IsDead')->textInput() ?>
-
-    <?= $form->field($model, 'CreatedBy')->textInput() ?>
-
-    <?= $form->field($model, 'CreatedDate')->textInput() ?>
-
-    <?= $form->field($model, 'UpdatedDate')->textInput() ?>
-
-    <?= $form->field($model, 'UpdatedBy')->textInput() ?>
-
-    <?= $form->field($model, 'RegistrationCenterID')->textInput() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?php ActiveForm::end(); ?>
     </div>
 
-    <?php ActiveForm::end(); ?>
-
+    </div>
 </div>

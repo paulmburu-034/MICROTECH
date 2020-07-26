@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'ConstituencyID')->textInput() ?>
 
-    <?= $form->field($model, 'RegistrationCenterID')->textInput() ?>
+    <!-- <?= $form->field($model, 'RegistrationCenterID')->textInput() ?> -->
 
     <?= $form->field($model, 'Status')->textInput(['maxlength' => true]) ?>
 
@@ -26,7 +26,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Occupation')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'DeathCertificateNo')->textInput(['maxlength' => true]) ?>
+    <!-- <?= $form->field($model, 'DeathCertificateNo')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'CreatedBy')->textInput() ?>
 
@@ -34,7 +34,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'UpdatedBy')->textInput() ?>
 
-    <?= $form->field($model, 'UpdateDate')->textInput() ?>
+    <?= $form->field($model, 'UpdateDate')->textInput() ?> -->
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

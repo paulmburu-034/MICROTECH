@@ -31,12 +31,12 @@ class SiteController extends Controller
                 //'only' => ['logout', 'signup''request-password-reset', 'reset-password', 'verify-email',],
                 'rules' => [
                     [
-                        'actions' => ['signup', 'error', 'about', 'contact', 'login','resend-verification-email','request-password-reset', 'reset-password', 'verify-email',],
+                        'actions' => ['signup','about', 'error', 'login','resend-verification-email','request-password-reset', 'reset-password', 'verify-email',],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['index','logout'],
+                        'actions' => ['logout', 'error','index'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],

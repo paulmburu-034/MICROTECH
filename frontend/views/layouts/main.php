@@ -10,6 +10,8 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
 
+
+
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -27,38 +29,45 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    $menuItems = [
+<?php
+
+NavBar::begin([
+    'brandLabel' => Yii::$app->name,
+    'brandUrl' => Yii::$app->homeUrl,
+    'options' => [
+        'class' => 'navbar-inverse',
+    ],
+]);
+
+$menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'Birth Registration',  'items' => [
+                    ['label' => 'New Births', 'url' => '/birth-details/create'],
+                    ['label' => 'View Registration', 'url' => '/birth-details'],
+        ]],
+        ['label' => 'Death Registration',  'items' => [
+                    ['label' => 'New Deaths', 'url' => '/death-details/create'],
+                    ['label' => 'View Registration', 'url' => '/death-details'],
+        ]],
         ['label' => 'About', 'url' => ['/site/about']],
         ['label' => 'Contact', 'url' => ['/site/contact']],
     ];
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-    } else {
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>';
-    }
+
+if( count($menuItems) ){
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
+        'options' => ['class' => 'navbar-nav'],
         'items' => $menuItems,
     ]);
-    NavBar::end();
-    ?>
+}
+?>
+<form class="navbar-form navbar-left" action="/action_page.php">
+    <div class="form-group has-feedback search">
+        <input type="text" class="form-control" placeholder="Search" />
+        <i class="glyphicon glyphicon-search form-control-feedback"></i>
+    </div>
+</form>
+<?php
+NavBar::end();?>
 
     <div class="container">
         <?= Breadcrumbs::widget([
