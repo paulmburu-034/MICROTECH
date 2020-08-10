@@ -1,7 +1,11 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
+use backend\models\County;
+
+$county = County::find()->orderBy('CountyID','Asc')->all();
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Constituency */
@@ -16,15 +20,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'ConstituencyDescription')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'CountyID')->textInput() ?>
+    <?= $form->field($model, 'CountyID')->dropDownList(ArrayHelper::map($county,'CountyID','CountyName'),['prompt'=>'Select County','data-validation'=>'required'])->label('<b>County Name</b>'); ?>
 
-    <?= $form->field($model, 'CreatedDate')->textInput() ?>
+    <!-- <?= $form->field($model, 'CreatedDate')->textInput() ?>
 
     <?= $form->field($model, 'CreatedBy')->textInput() ?>
 
     <?= $form->field($model, 'UpdatedDate')->textInput() ?>
 
-    <?= $form->field($model, 'UpdatedBy')->textInput() ?>
+    <?= $form->field($model, 'UpdatedBy')->textInput() ?> -->
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

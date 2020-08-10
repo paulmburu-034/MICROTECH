@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $model backend\models\County */
 
 $this->title = 'Create County';
-$this->params['breadcrumbs'][] = ['label' => 'Counties', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+// $this->params['breadcrumbs'][] = ['label' => 'Counties', 'url' => ['index']];
+// $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="county-create">
 

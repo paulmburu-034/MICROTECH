@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $model backend\models\Constituency */
 
 $this->title = 'Create Constituency';
-$this->params['breadcrumbs'][] = ['label' => 'Constituencies', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+// $this->params['breadcrumbs'][] = ['label' => 'Constituencies', 'url' => ['index']];
+// $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="constituency-create">
 

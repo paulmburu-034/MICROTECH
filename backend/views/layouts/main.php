@@ -3,12 +3,14 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use backend\assets\AppAsset;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
+use frontend\assets\AppAsset;
 use common\widgets\Alert;
+
+
 
 AppAsset::register($this);
 ?>
@@ -27,16 +29,30 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    $menuItems = [
+<?php
+
+NavBar::begin([
+    'brandLabel' => Yii::$app->name,
+    'brandUrl' => Yii::$app->homeUrl,
+    'options' => [
+        'class' => 'navbar-inverse',
+    ],
+]);
+
+$menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'Birth Registration',  'items' => [
+                    ['label' => 'New Births', 'url' => '/birth-details/create'],
+                    ['label' => 'View Registration', 'url' => '/birth-details'],
+        ]],
+        ['label' => 'Death Registration',  'items' => [
+                    ['label' => 'New Deaths', 'url' => '/death-details/create'],
+                    ['label' => 'View Registration', 'url' => '/death-details'],
+        ]],
+        ['label' => 'Location Registration',  'items' => [
+                    ['label' => 'County', 'url' => '/county/create'],
+                    ['label' => 'Constituency', 'url' => '/constituency/create'],
+        ]],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
@@ -50,12 +66,22 @@ AppAsset::register($this);
             . Html::endForm()
             . '</li>';
     }
+
+if( count($menuItems) ){
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
+        'options' => ['class' => 'navbar-nav'],
         'items' => $menuItems,
     ]);
-    NavBar::end();
-    ?>
+}
+?>
+<form class="navbar-form navbar-left" action="/action_page.php">
+    <div class="form-group has-feedback search">
+        <input type="text" class="form-control" placeholder="Search" />
+        <i class="glyphicon glyphicon-search form-control-feedback"></i>
+    </div>
+</form>
+<?php
+NavBar::end();?>
 
     <div class="container">
         <?= Breadcrumbs::widget([
