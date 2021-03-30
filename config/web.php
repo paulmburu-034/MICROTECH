@@ -42,7 +42,7 @@ $config = [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.gmail.com',
                 'username' => 'microtechtenterprises@gmail.com',
-                'password' => 'Qwerty@7023',
+                'password' => '**************',
                 'port' => '587',
                 'encryption' => 'tls',
                 'streamOptions' => [ 'tls' =>
