@@ -19,6 +19,8 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -44,6 +46,7 @@ AppAsset::register($this);
                     ['label' => 'View Auth Items Child', 'url' => '/auth-item-child', 'visible'=>Yii::$app->user->can('auth-item-child')],
                     ['label' => 'Auth Item Assignment', 'url' => '/auth-assignment/create', 'visible'=>Yii::$app->user->can('create-auth-assignment')],
                     ['label' => 'Users Assigned', 'url' => '/auth-assignment', 'visible'=>Yii::$app->user->can('auth-assignment')],
+                    ['label' => 'Number Series', 'url' => '/number-series', 'visible'=>Yii::$app->user->can('auth-assignment')],
         ], 'visible'=>Yii::$app->user->can('create-auth-item')],
         ['label' => 'Birth Registration',  'items' => [
                     ['label' => 'New Birth Registration', 'url' => '/birth-details/create', 'visible'=>Yii::$app->user->can('create-birth')],

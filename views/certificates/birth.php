@@ -3,6 +3,14 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\GridView;
+use app\models\County;
+use app\models\Constituency;
+use app\models\User;
+
+$county = County::findOne(['CountyID' => $person->CountyID]);
+$const = Constituency::findOne(['ConstituencyID' => $person->ConstituencyID]);
+$r_user = User::findOne($person->CreatedBy);
+$a_user = User::findOne(Yii::$app->user->identity->id);
 
 
 ?>
@@ -29,33 +37,31 @@ use yii\grid\GridView;
                              <table style="width:100%; border-style: solid; border-collapse: collapse;">
                                   <tr>
                                       <td colspan="6" style="width: 100%; border: 1px solid black;">
-                                          Birth in the ----------------- Constituency in the -------------- County
+                                          Birth in the <?=$const->ConstituencyName?> Constituency, in the <?=$county->CountyName ?> County
                                       </td>
                                   </tr>
                                   <tr>
-                                      <td style="border: 1px solid black;">Entry No:</td><td style="border: 1px solid black;">----------------</td>
-                                      <td style="border: 1px solid black;">Where born</td><td style="border: 1px solid black;">--------------------</td>
-                                      <td style="border: 1px solid black;">Name:</td><td style="border: 1px solid black;">----------------------------</td>
+                                      <td style="border: 1px solid black;">Entry No:</td><td style="border: 1px solid black;"><?=$person->BirthCertNo ?></td>
+                                      <td style="border: 1px solid black;">Where born</td><td style="border: 1px solid black;"><?=$const->ConstituencyName?></td>
+                                      <td style="border: 1px solid black;">Name:</td><td style="border: 1px solid black;"><?=$person->FullName?></td>
                                   </tr>
                                   <tr style="border: 1px solid black;">
-                                      <td style="border: 1px solid black;">Date of Birth:</td><td style="border: 1px solid black;"> ---------------- </td>
-                                      <td style="border: 1px solid black;">Gender:</td><td style="border: 1px solid black;">------------</td>
-                                      <td style="border: 1px solid black;">Name of Father:</td><td>--------------------------</td>
+                                      <td style="border: 1px solid black;">Date of Birth:</td><td style="border: 1px solid black;"><?=date('d-m-Y',strtotime($person->DateofBirth))?></td>
+                                      <td style="border: 1px solid black;">Gender:</td><td style="border: 1px solid black;"><?=$person->Gender?></td>
+                                      <td style="border: 1px solid black;">Name of Father:</td><td><?=$person->FathersName?></td>
                                   </tr>
                                   <tr style="border: 1px solid black;">
-                                      <td colspan="1.5" style="border: 1px solid black;">Name and Maiden, Name of Mother:</td><td colspan="4">----------------------</td>
+                                      <td colspan="2" style="border: 1px solid black;">Name and Maiden, Name of Mother:</td><td colspan="4"><?=$person->MothersName?></td>
                                   </tr>
                                   <tr style="border: 1px solid black;">
-                                      <td colspan="1.5" style="border: 1px solid black;">Name and Description of Informant:</td><td colspan="4"> Sgd Parent </td>
+                                      <td colspan="2" style="border: 1px solid black;">Name and Description of Informant:</td><td colspan="4"> Sgd Parent </td>
                                   </tr>
                                   <tr style="border: 1px solid black;">
-                                      <td style="border: 1px solid black;">Name of Registering Officer</td><td>------------------------------</td>
-                                      <td style="border: 1px solid black;">Date of Registration</td><td colspan="3">-----------------</td>
+                                      <td style="border: 1px solid black;">Name of Registering Officer</td><td><?=$r_user->username?></td>
+                                      <td style="border: 1px solid black;">Date of Registration</td><td colspan="3"><?=date('d-m-Y',strtotime($person->CreatedDate)) ?></td>
                                   </tr>
                                   <tr style="border: 1px solid black;">
-                                      <td colspan="6" style="width: 100%">I --------------------- Constituency/ Assistant Registrar for ------------------
-                                      Sub County, hereby certify that this certificate is compiled from an entry/return in the country's
-                                      register of births.</td>
+                                      <td colspan="6" style="width: 100%">I <?=$a_user->username?> Constituency/ Assistant Registrar for <?=$const->ConstituencyName?> Sub County, hereby certify that this certificate is compiled from an entry/return in the country's register of births.</td>
                                   </tr>
                               </table><br>
                             <div class="row pull-right" style="margin-inline-end: 20px; writing-mode: horizontal-tb; direction: rtl;">
@@ -70,7 +76,7 @@ use yii\grid\GridView;
                             </div><br>
                             <div class="row" style="border-bottom: 1px solid black;"> 
                                 <div class="col-md-12">
-                                    <p>Given under the seal of Principal Civil Registrar on the -----</p>
+                                    <p>Given under the seal of Principal Civil Registrar on the <?= date('d-m-Y') ?></p>
                                 </div>
                             </div>
                             <div class="row"> 

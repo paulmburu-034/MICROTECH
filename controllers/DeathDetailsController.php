@@ -58,7 +58,6 @@ class DeathDetailsController extends Controller
     {
         if (\Yii::$app->user->can('death-details-index')) {
         # code...
-            if (\Yii::$app->user->can('view-birth-index')) {
             # code...
             $center = RegistrationCenter::findOne(['RegistrationCenterID'=>Yii::$app->user->identity->RegistrationCenterID]);
             if (!empty($center) && $center->RegistrationCenterType == 'Office of Registrar of Births and Deaths') {

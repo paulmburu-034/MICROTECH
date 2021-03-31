@@ -117,9 +117,9 @@ class CertificatesController extends Controller
         if (\Yii::$app->user->can('print-birth')) {
             # code...
             //finding the birth summary is being done for.
-            $model = BirthDetails::findOne(['BirthCertNo' => $id]);
+            $person = BirthDetails::findOne(['BirthCertNo' => $id]);
             //initializing content to be printed.
-            $content = $this->renderPartial('birth',['model'=>$model]);
+            $content = $this->renderPartial('birth',['person'=>$person]);
 
             // setup kartik\mpdf\Pdf component
             $pdf = new Pdf([
@@ -139,13 +139,13 @@ class CertificatesController extends Controller
                 // any css to be embedded if required
                 'cssInline' => '.kv-heading-1{font-size:18px}',
                  // set mPDF properties on the fly
-                'options' => ['title' => 'Birth Details - Birth Certificate No: '.$model->BirthCertNo],
+                'options' => ['title' => 'Birth Details - Birth Certificate No: '.$person->BirthCertNo],
                  // call mPDF methods on the fly
                 'methods' => [
-                    // 'SetHeader'=>['Birth Details - Birth Certificate No: '.$model->BirthCertNo],
+                    // 'SetHeader'=>['Birth Details - Birth Certificate No: '.$person->BirthCertNo],
                     // 'SetFooter'=>['{PAGENO}'],
                 ],
-                'filename' => 'Birth Details - Birth Certificate No: '.$model->BirthCertNo,
+                'filename' => 'Birth Details - Birth Certificate No: '.$person->BirthCertNo,
                 // 'marginHeader' => 5,
             ]);
 
@@ -163,11 +163,9 @@ class CertificatesController extends Controller
         if (\Yii::$app->user->can('print-death')) {
             # code...
             //finding the death summary is being done for.
-            $model = BirthDetails::findOne(['BirthCertNo' => $id]);
-
-            //$death_details = DeathDetails::findOne($id);
+            $person = BirthDetails::findOne(['BirthCertNo' => $id]);
             //initializing content to be printed.
-            $content = $this->renderPartial('death',['model'=>$model]);
+            $content = $this->renderPartial('death',['person'=>$person]);
 
             // setup kartik\mpdf\Pdf component
             $pdf = new Pdf([
@@ -187,13 +185,13 @@ class CertificatesController extends Controller
                 // any css to be embedded if required
                 'cssInline' => '.kv-heading-1{font-size:18px}',
                  // set mPDF properties on the fly
-                'options' => ['title' => 'Death Details - Death Certificate No: '.$model->BirthCertNo],
+                'options' => ['title' => 'Death Details - Death Certificate No: '.$person->BirthCertNo],
                  // call mPDF methods on the fly
                 'methods' => [
                     // 'SetHeader'=>['Death Details - Death Certificate No: '.$model->DeathCertNo],
                     // 'SetFooter'=>['{PAGENO}'],
                 ],
-                'filename' => 'Death Details - Death Certificate No: '.$model->BirthCertNo,
+                'filename' => 'Death Details - Death Certificate No: '.$person->BirthCertNo,
                 // 'marginHeader' => 5,
             ]);
 
